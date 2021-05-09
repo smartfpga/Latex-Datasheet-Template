@@ -98,6 +98,7 @@ The following table shows the revision history for this document. But also it sh
     \hline
     \textbf{Date} & \textbf{Version} & \textbf{Author} & \textbf{Revision} \\ \chline
     20.04.2021 & 1.0 & Dmitry Eliseev & The LaTeX template for your datasheets.\\ \hline
+    09.05.2021 & 1.1 & Dmitry Eliseev & Included a section with a code snippet example.\\ \hline
 \end{tabularx}
 \egroup
 \end{table}
@@ -112,13 +113,33 @@ It is available as a Github-project at \url{https://github.com/smartfpga/Latex-D
 Please put your figures in the /fig directory. Here comes Figure \ref{fig:FigureRef}.
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=14cm]{fig/SampleFigure.png}
+        \includegraphics[width=7cm]{fig/SampleFigure.png}
     \end{center}
     \caption{Caption of an example figure.}
     \label{fig:FigureRef}
 \end{figure}
 
-
+\section*{Sections and subsections}
+\subsection*{The subsection}
+Like in all LaTeX documents you can effectively use hierarchical structures in your datasheets. In order to do this use the \verb+\section+ and \verb+\subsection+ commands.
+\subsection*{Code entries}
+If insertion of a code snippet with a monospaced font is needed, use the verbatim sections and include your code between \verb+\begin{verbatim}+ and \verb+\end{verbatim}+ commands. Here is an example:
+\begin{verbatim}
+COMPONENT yet_another_VHDL_component
+  GENERIC(
+    top_clk_freq        : INTEGER := 40_000_000; 
+    i2_clk_freq         : INTEGER := 100_000;      
+    Polling_freq        : INTEGER := 4);
+  PORT (
+    sysclk              : in STD_LOGIC;
+    reset_n             : in STD_LOGIC;
+    data_regs           : out t_data_regs;
+    control_reg         : in std_logic_vector;
+    i2c_sda             : inout STD_LOGIC;  
+    i2c_scl             : inout STD_LOGIC   
+    );
+  END COMPONENT;
+\end{verbatim}
 
 % no bibtex is used for the bibliography. You should take care yourself about formatting the bibliography entries. 
 \begin{thebibliography}{3}
