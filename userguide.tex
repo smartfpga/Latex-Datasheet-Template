@@ -29,7 +29,7 @@ singlelinecheck=false % <-- important
 \usepackage{color}
 
 
-\definecolor{dimared}{RGB}{106,42,50}
+\definecolor{burgund}{RGB}{106,42,50}
 \definecolor{gray50}{gray}{0.5}
 \definecolor{gray25}{gray}{0.75}
 \definecolor{lightgray}{gray}{0.9}
@@ -67,7 +67,7 @@ singlelinecheck=false % <-- important
 \noalign{\global\arrayrulewidth\dimen1 }}
 
 \newcommand{\chline}{%
-    \arrayrulecolor{dimared}\widehline\arrayrulecolor{gray25}
+    \arrayrulecolor{burgund}\widehline\arrayrulecolor{gray25}
 }
 
 
@@ -97,8 +97,8 @@ The following table shows the revision history for this document. But also it sh
 \begin{tabularx}{\textwidth}{|l|l|l|X|}
     \hline
     \textbf{Date} & \textbf{Version} & \textbf{Author} & \textbf{Revision} \\ \chline
+    09.05.2021 & 1.1 & Dmitry Eliseev & Included a section with a code snippet example. Added bit-field description.\\ \hline
     20.04.2021 & 1.0 & Dmitry Eliseev & The LaTeX template for your datasheets.\\ \hline
-    09.05.2021 & 1.1 & Dmitry Eliseev & Included a section with a code snippet example.\\ \hline
 \end{tabularx}
 \egroup
 \end{table}
@@ -106,24 +106,33 @@ The following table shows the revision history for this document. But also it sh
 
 \section*{General Description}
 This document shows possibilities of LaTeX for creating datasheets. 
-It is available as a Github-project at \url{https://github.com/smartfpga/Latex-Datasheet-Template.git} \cite{GithubLink}.
-
+The most suitable use-case of this template is a relatively short datasheet of up to about 30 pages.
+Although this document shows some LaTeX commands, it cannot be used as a LaTeX tutorial.
+There are plenty of LaTeX tutorials on internet.
+See for example \cite{LatexTutorial}.
+This template was originally composed by Dmitry Eliseev (@smartfpga.de) for the Telegram community of \textbf{FPGA-systems.ru} and is evolving as a Git-project here: \url{https://github.com/smartfpga/Latex-Datasheet-Template.git} \cite{GithubLink}.
 
 \section*{Insert figures}
-Please put your figures in the /fig directory. Here comes Figure \ref{fig:FigureRef}.
+The best practice to keep your figures with the tex-file is putting them into \verb+/fig+ directory. 
+How your illustration may look like in a datasheet is shown in Figure \ref{fig:FigureRef}.
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=7cm]{fig/SampleFigure.png}
     \end{center}
-    \caption{Caption of an example figure.}
+    \caption{This is a caption of an example figure. The \textbf{FPGA-systems.ru} logo was used as a sample figure.}
     \label{fig:FigureRef}
 \end{figure}
 
 \section*{Sections and subsections}
-\subsection*{The subsection}
-Like in all LaTeX documents you can effectively use hierarchical structures in your datasheets. In order to do this use the \verb+\section+ and \verb+\subsection+ commands.
+
+\subsection*{Document hierarchy}
+Like in all LaTeX documents you can introduce hierarchy in your datasheets. 
+For most cases two hierarchical levels are enough. 
+In order to introduce them in your document use the \verb+\section+ and \verb+\subsection+ commands. 
+
 \subsection*{Code entries}
-If insertion of a code snippet with a monospaced font is needed, use the verbatim sections and include your code between \verb+\begin{verbatim}+ and \verb+\end{verbatim}+ commands. Here is an example:
+If insertion of a code snippet with a monospaced font is needed, use the verbatim sections and include your code between \verb+\begin{verbatim}+ and \verb+\end{verbatim}+ commands. 
+Here is an example:
 \begin{verbatim}
 COMPONENT yet_another_VHDL_component
   GENERIC(
@@ -141,10 +150,37 @@ COMPONENT yet_another_VHDL_component
   END COMPONENT;
 \end{verbatim}
 
+\subsection*{Bit description in registers}
+In order to describe bits or bit-fields in registers you may use simple tables. 
+An example is shown in Table \ref{tab:examplereg}.
+
+\begin{table}[H]
+\caption{Bit description of an example register}
+\label{tab:examplereg}
+\centering\bgroup
+\def\arraystretch{1.5}
+\begin{tabularx}{\textwidth}{|l|l|l|X|}
+    \hline
+    \textbf{Bit\#} & \textbf{Name} & \textbf{Active state} & \textbf{Description} \\ \chline
+    7..4 & - & - & Reserved bits\\ \hline
+    3 & i2c\_error & high & The flag goes high if an ACK error was detected. To unset this error flag user must run the configuration procedure again by toggling the respective bit of the control register.\\ \hline
+    2 & data\_regs\_refreshed & high & This bit is toggled for one \verb|sysclk| period, indicating that the ADC data registers were just refreshed. The user should use this signal when taking data from the chXX registers. \\ \hline
+    1 & config\_done & high & This bit goes high after the configuration procedure of the ADC is accomplished. The bit goes low if an I2C acknowledgement error occurs. \\ \hline
+    0 & ADC\_polling\_mode & high & Reflects whether the polling is currently switched ON (1) or OFF (0).\\ \hline
+\end{tabularx}
+\egroup
+\end{table}
+
+
 % no bibtex is used for the bibliography. You should take care yourself about formatting the bibliography entries. 
 \begin{thebibliography}{3}
+
+\bibitem{LatexTutorial}
+Online tutorial: Learn LaTeX in 30 minutes. URL:\\
+\url{https://de.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes}
+
 \bibitem{GithubLink}
-Gitlab Project: LaTeX Documentation Template. URL:\\
+Github Project: LaTeX Documentation Template. URL:\\
 \url{https://github.com/smartfpga/Latex-Datasheet-Template.git}
 \end{thebibliography}
 
