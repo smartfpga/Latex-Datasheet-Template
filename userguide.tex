@@ -1,0 +1,130 @@
+% A template showing Latex possibilities for providing datasheets
+% Initially provided by smartfpga for the fpga-systems.ru community
+
+\documentclass[a4paper, 10pt, onecolumn]{article}
+
+
+\newcommand {\documentname}{LaTeX documentation demonstrator template}
+\newcommand {\documenthdrstring}{\textit{\textbf{\documentname}}}
+
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+\usepackage[utf8]{inputenc}        
+
+\usepackage[english]{babel} 
+\usepackage{url}                	% optional for Internet Links
+
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\fontfamily{phv}\selectfont
+
+\usepackage{boldline}
+\usepackage{tabularx}
+\usepackage[
+singlelinecheck=false % <-- important
+]{caption}
+
+\usepackage{colortbl}               % color in tables
+\usepackage{color}
+
+
+\definecolor{dimared}{RGB}{106,42,50}
+\definecolor{gray50}{gray}{0.5}
+\definecolor{gray25}{gray}{0.75}
+\definecolor{lightgray}{gray}{0.9}
+
+\usepackage{graphicx}
+\usepackage{lscape}
+
+\usepackage{amsmath}                % optional for formulas
+\usepackage{float}
+%\usepackage[font=sf]{floatrow}
+
+\usepackage{sectsty}
+\allsectionsfont{\normalfont\sffamily\bfseries} 
+
+%\usepackage{bytefield}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{title}{%
+    \fancyhead{}
+    \renewcommand{\headrulewidth}{0pt}
+    \rhead{\includegraphics[width=4cm]{fig/fpgasys.png}}
+    %\lhead{\ipcorename}
+}
+\setlength\headheight{46pt} %% just to make warning go away. Adjust the value after looking into the warning.
+\rhead{\includegraphics[width=4cm]{fig/fpgasys.png}}
+\lhead{\documenthdrstring}
+\textheight = 695pt
+
+\def\widehline{%
+\noalign{\global\dimen1 \arrayrulewidth
+\global\arrayrulewidth3\arrayrulewidth}%
+\hline
+\noalign{\global\arrayrulewidth\dimen1 }}
+
+\newcommand{\chline}{%
+    \arrayrulecolor{dimared}\widehline\arrayrulecolor{gray25}
+}
+
+
+\usepackage[
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=black,
+    citecolor=black
+]{hyperref}
+
+\begin{document}
+\thispagestyle{title}
+\arrayrulecolor{gray25}
+
+\begin{flushleft}
+\huge \documentname
+\normalsize
+\end{flushleft}
+
+\section*{Revision History}
+The following table shows the revision history for this document. But also it shows how a full-width table may look like.
+
+\begin{table}[H]
+\label{tab:revhist}
+\centering\bgroup
+\def\arraystretch{1.5}
+\begin{tabularx}{\textwidth}{|l|l|l|X|}
+    \hline
+    \textbf{Date} & \textbf{Version} & \textbf{Author} & \textbf{Revision} \\ \chline
+    20.04.2021 & 1.0 & Dmitry Eliseev & The LaTeX template for your datasheets.\\ \hline
+\end{tabularx}
+\egroup
+\end{table}
+
+
+\section*{General Description}
+This document shows possibilities of LaTeX for creating datasheets. 
+It is available as a Github-project at \url{https://github.com/smartfpga/Latex-Datasheet-Template.git} \cite{GithubLink}.
+
+
+\section*{Insert figures}
+Please put your figures in the /fig directory. Here comes Figure \ref{fig:FigureRef}.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=14cm]{fig/SampleFigure.png}
+    \end{center}
+    \caption{Caption of an example figure.}
+    \label{fig:FigureRef}
+\end{figure}
+
+
+
+% no bibtex is used for the bibliography. You should take care yourself about formatting the bibliography entries. 
+\begin{thebibliography}{3}
+\bibitem{GithubLink}
+Gitlab Project: LaTeX Documentation Template. URL:\\
+\url{https://github.com/smartfpga/Latex-Datasheet-Template.git}
+\end{thebibliography}
+
+\end{document}
