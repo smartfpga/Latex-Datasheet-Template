@@ -1,5 +1,4 @@
 % A template showing Latex possibilities for providing datasheets
-% Initially provided by smartfpga for the fpga-systems.ru community
 
 \documentclass[a4paper, 10pt, onecolumn]{article}
 
@@ -21,8 +20,11 @@
 
 \usepackage{boldline}
 \usepackage{tabularx}
+
 \usepackage[
-singlelinecheck=false % <-- important
+singlelinecheck=false, % <-- important
+margin=3cm, % Caption hat jetzt 3cm Einrückung relativ zum Textrand
+font=small,labelfont=bf, labelfont += it % Labels der Bild- bzw Tabellenunterschriften sind jetzt Fett Kursiv 
 ]{caption}
 
 \usepackage{colortbl}               % color in tables
@@ -52,11 +54,11 @@ singlelinecheck=false % <-- important
 \fancypagestyle{title}{%
     \fancyhead{}
     \renewcommand{\headrulewidth}{0pt}
-    \rhead{\includegraphics[width=4cm]{fig/fpgasys.png}}
+    \rhead{\includegraphics[width=4cm]{fig/smartFPGAlogo.png}}
     %\lhead{\ipcorename}
 }
 \setlength\headheight{46pt} %% just to make warning go away. Adjust the value after looking into the warning.
-\rhead{\includegraphics[width=4cm]{fig/fpgasys.png}}
+\rhead{\includegraphics[width=4cm]{fig/smartFPGAlogo.png}}
 \lhead{\documenthdrstring}
 \textheight = 695pt
 
@@ -97,12 +99,12 @@ The following table shows the revision history for this document. But also it sh
 \begin{tabularx}{\textwidth}{|l|l|l|X|}
     \hline
     \textbf{Date} & \textbf{Version} & \textbf{Author} & \textbf{Revision} \\ \chline
+    30.12.2023 & 1.2 & Dmitry Eliseev & Updated figures caption style: margin added and label's font is changed to bold italic. \\ \hline
     09.05.2021 & 1.1 & Dmitry Eliseev & Included a section with a code snippet example. Added bit-field description.\\ \hline
     20.04.2021 & 1.0 & Dmitry Eliseev & The LaTeX template for your datasheets.\\ \hline
 \end{tabularx}
 \egroup
 \end{table}
-
 
 \section*{General Description}
 This document shows possibilities of LaTeX for creating datasheets. 
@@ -110,16 +112,15 @@ The most suitable use-case of this template is a relatively short datasheet of u
 Although this document shows some LaTeX commands, it cannot be used as a LaTeX tutorial.
 There are plenty of LaTeX tutorials on internet.
 See for example \cite{LatexTutorial}.
-This template was originally composed by Dmitry Eliseev (@smartfpga.de) for the Telegram community of \textbf{FPGA-systems.ru} and is evolving as a Git-project here: \url{https://github.com/smartfpga/Latex-Datasheet-Template.git} \cite{GithubLink}.
+This template was originally composed by Dmitry Eliseev (@smartfpga.de) and is evolving as a Git-project here: \url{https://github.com/smartfpga/Latex-Datasheet-Template.git} \cite{GithubLink}.
 
 \section*{Insert figures}
 The best practice to keep your figures with the tex-file is putting them into \verb+/fig+ directory. 
 How your illustration may look like in a datasheet is shown in Figure \ref{fig:FigureRef}.
 \begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=7cm]{fig/SampleFigure.png}
-    \end{center}
-    \caption{This is a caption of an example figure. The \textbf{FPGA-systems.ru} logo was used as a sample figure.}
+    \centering % \begin{center}/\end{center} takes some additional vertical space
+    \includegraphics[width=10cm]{fig/SampleFigure.png}
+    \caption{This is a caption of an example figure. An AI-generated abstract figure was used for the illustrative purpose.}
     \label{fig:FigureRef}
 \end{figure}
 
